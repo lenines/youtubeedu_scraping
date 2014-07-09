@@ -5,12 +5,12 @@ soup = BeautifulSoup(urllib.urlopen("http://gdata.youtube.com/schemas/2007/educa
 
 
 for category in soup.find_all("atom:category"):
-	a=None
 	parent_category=None
 	if category.find("yt:parentcategory")==None:
-		a=''
+		parent_category=''
 	else:
-		a=category.find("yt:parentcategory")['term']
+		parent_category=category.find("yt:parentcategory")['term']
+		
 	courses_url = "http://gdata.youtube.com/feeds/api/edu/courses?v=2&category=%s"%category["term"]
 	courses_by_category_soup = BeautifulSoup(urllib.urlopen(courses_url))
 
@@ -25,6 +25,6 @@ for category in soup.find_all("atom:category"):
 		print "LIST OF VIDEOS-LECTURES"
 		print "======================="
 		for lecture in course_lectures_soup.find_all("entry"):
-			x=[y.next_element for y in lecture.findAll('yt:videoid')]
+			video_id=[y.next_element for y in lecture.findAll('yt:videoid')]
 
-			print "https://www.youtube.com/embed/"+x[0]
+			print "https://www.youtube.com/embed/"+video_id[0]
