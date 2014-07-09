@@ -13,7 +13,7 @@ cursor.execute('''CREATE TABLE category(
             parent_category text)''')
 
 cursor.execute('''CREATE TABLE course(
-			id text primary key not null,
+			id text not null,
 			title text NOT NULL, 
 			summary text,
 			category_id integer,
