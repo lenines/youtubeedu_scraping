@@ -76,5 +76,5 @@ for category in soup.find_all("atom:category"):
 			x=[y.next_element for y in lecture.findAll('yt:videoid')]
 			
 			#INSERT LECTURES
-			insert_lectures("https://www.youtube.com/embed/"+x[0].encode('utf-8'),str(course.id.get_text()))
+			insert_lectures("https://www.youtube.com/embed/"+x[0],str(course.id.get_text()))
 			
